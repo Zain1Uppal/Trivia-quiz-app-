@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Lobby } from '../../pages/index';
+import { GeneralLeaderboard } from '../index';
 import io from 'socket.io-client';
 import './style.css';
 
 let socket;
-const CONNECTION_URL = 'http://localhost:3000/'
+const CONNECTION_URL = 'https://quiz-your-mind.herokuapp.com/'
 
 export const Socket = () => {
     const [login, setLogin] = useState(false)
@@ -53,6 +55,7 @@ export const Socket = () => {
     }
     return(
         <div>
+<<<<<<< HEAD
             {!login ? (
                 <form className ='roomJoin' id='roomJoin'>
                     <h2>Enter your username and room number</h2>
@@ -70,6 +73,23 @@ export const Socket = () => {
                     <h1>questions is : {questionList}</h1>
                 </div>
             )}
+=======
+            {!login ?
+                (<div>
+                    <form className='roomJoin' id='roomJoin' action='/lobby'>
+                        <h2>Enter your username and room number</h2>
+                        <input placeholder='name' onChange={(e) => {
+                            setUsername(e.target.value)
+                        }} />
+                        <input placeholder='room' onChange={(e) => {
+                            setRoom(e.target.value)
+                        }} />
+                        <button onClick={connectRoom} disabled={!(userName.length >= 3)} >Enter</button>
+                        <button onClick={genRoomId} disabled={!(userName.length >= 3)}>Create a Room</button>
+                    </form>
+                <GeneralLeaderboard />
+                </div>) : (<Lobby socket={socket} userName={userName} roomNum={room} createR={createRoom} />)}
+>>>>>>> a59749d70dcf2c26afcafc85b5ef619ceb0b7116
         </div>
     )
 }

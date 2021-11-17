@@ -4,6 +4,7 @@ const cors = require('cors')
 const axios = require('axios')
 const leaderboardRoutes = require('./routes/leaderboard');
 const Leaderboard = require('./models/Leaderboard')
+const port = process.env.PORT || 3000;
 
 const socket = require('socket.io');
 
@@ -12,9 +13,10 @@ app.use(express.json())
 app.use('/leaderboard', leaderboardRoutes);
 
 // connect routes to server.js
-const server = app.listen('3000', () => {
-    console.log('server running on http://localhost:3000')
+const server = app.listen(port, () => {
+    console.log(`server running on http://localhost:${port}`)
 });
+
 
 app.get('/', (req, res) => res.send("Welcome to the API"));
 

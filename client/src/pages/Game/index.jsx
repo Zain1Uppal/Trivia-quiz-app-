@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from '../../components';
 import { RoomLeaderboard } from '../../components/index';
+import { GeneralLeaderboard } from '../../components/index';
 import io from 'socket.io-client';
 import './style.css';
 import { MCAnswer } from '../../components';
@@ -13,8 +14,6 @@ export function Game({ socket, userName, roomNum, roomCreated, questionNum, diff
     const [endGame, setEndgame] = useState(false);
     const [startGame, setStart] = useState(false);
     const [leaderboard, setLeaderboard] = useState([]);
-    //const [buttonShow, setButtonShow] = useState(false);
-    // const [admin, setAdmin] = useState(false);
 
     useEffect(() => {
         const userData = [score, userName]
@@ -99,6 +98,7 @@ export function Game({ socket, userName, roomNum, roomCreated, questionNum, diff
             <ul>
                 {getUserScores()}
             </ul>
+            { endGame && <GeneralLeaderboard /> }
         </div >
     )
 }
